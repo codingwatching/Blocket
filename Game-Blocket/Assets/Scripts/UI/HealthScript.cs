@@ -5,9 +5,9 @@ using UnityEngine;
 public class HealthScript : MonoBehaviour
 {
     [SerializeField] 
-    private GameObject Heart;
+    private Sprite Heart;
     [SerializeField]
-    private GameObject half_Heart;
+    private Sprite half_Heart;
     
     void Start()
     {
