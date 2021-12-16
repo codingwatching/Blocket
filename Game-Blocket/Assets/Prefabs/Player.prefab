@@ -796,6 +796,21 @@ MonoBehaviour:
   count: 0
   deleteSprite: {fileID: 412892996850318658}
   crackTile: {fileID: 21300000, guid: 223263893184d0f4cad2120a59508291, type: 3}
+--- !u!114 &7716585494486204269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588202752137757625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SendRate: 0.1
+  m_Animator: {fileID: 510963711519353517}
+  m_TrackedParamFlags: 0
 --- !u!1 &2794137725677328093
 GameObject:
   m_ObjectHideFlags: 0
@@ -11592,13 +11607,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -749950555386304952, guid: 367dd789b5d80bc49a462f98114b7f4a, type: 3}
---- !u!1 &2588202752137757625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 743232601337200644, guid: 367dd789b5d80bc49a462f98114b7f4a, type: 3}
-  m_PrefabInstance: {fileID: 3007096872523105213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2375288190910944104 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 670441139345608917, guid: 367dd789b5d80bc49a462f98114b7f4a, type: 3}
+  m_PrefabInstance: {fileID: 3007096872523105213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2588202752137757625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 743232601337200644, guid: 367dd789b5d80bc49a462f98114b7f4a, type: 3}
   m_PrefabInstance: {fileID: 3007096872523105213}
   m_PrefabAsset: {fileID: 0}

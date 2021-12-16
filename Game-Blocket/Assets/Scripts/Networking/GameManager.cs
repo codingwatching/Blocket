@@ -1,12 +1,8 @@
-using System.Collections;
+using MLAPI;
+using MLAPI.Transports.UNET;
 using System.Collections.Generic;
 using UnityEngine;
-
-using MLAPI;
 using UnityEngine.SceneManagement;
-using MLAPI.Transports.UNET;
-using MLAPI.NetworkVariable.Collections;
-using MLAPI.NetworkVariable;
 
 /// <summary>
 /// Used for importend Gameengineparts<br></br>
@@ -17,7 +13,7 @@ public class GameManager : NetworkBehaviour
 
 	public GameObject playerPrefab, worldPrefab;
 	/// <summary>Is true if the MainGame is online</summary>
-	public static bool gameRunning;
+	public static bool gameRunning, inGame = false;
 	/// <summary>Not used!</summary>
 	public static bool isMultiplayer = true;
 	public static List<NetworkObject> Players { get; } = new List<NetworkObject>();
@@ -32,7 +28,14 @@ public class GameManager : NetworkBehaviour
 
 	public void FixedUpdate()
 	{
-		if (GlobalVariables.LocalPlayer == null && gameRunning){
+        //if (NetworkManager.Singleton.IsClient)
+        //    if (!NetworkManager.Singleton.IsConnectedClient && inGame)
+        //    {
+        //        NetworkManager.Shutdown();
+        //        SceneManager.LoadScene("MainMenu");
+        //    }
+
+        if (GlobalVariables.LocalPlayer == null && gameRunning/* && !inGame*/){
 			FindAndSetPlayer();
 			InitPlayerComponents();
 		}
@@ -75,9 +78,17 @@ public class GameManager : NetworkBehaviour
 				iGo.name += "(this)";
 			}
 			else
+			{
 				iGo.GetComponent<PlayerVariables>().playerLogic.SetActive(false);
+				iGo.GetComponent<Rigidbody2D>().gravityScale = 0;
+			}
+				
 		}
+		if(GlobalVariables.LocalPlayer != null)
+			inGame = true;
 	}
+
+	
 
 	/// <summary>
 	/// Init the player Components<br></br>
