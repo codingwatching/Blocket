@@ -75,7 +75,10 @@ public class GameManager : NetworkBehaviour
 				iGo.name += "(this)";
 			}
 			else
+			{
 				iGo.GetComponent<PlayerVariables>().playerLogic.SetActive(false);
+				iGo.GetComponent<Rigidbody2D>().gravityScale = 0;
+			}
 		}
 	}
 

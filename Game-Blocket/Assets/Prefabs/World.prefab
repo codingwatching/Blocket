@@ -66,6 +66,7 @@ MonoBehaviour:
   biom:
   - {fileID: 11400000, guid: 29b0f6e63e160294face5a7539aa68dc, type: 2}
   - {fileID: 11400000, guid: 6679dc32c099c0d40967d40357bebee9, type: 2}
+  - {fileID: 11400000, guid: 3c85a4bedfc55dd47926a979cff9f143, type: 2}
   blocks:
   - _name: air
     _blockID: 0
@@ -147,20 +148,20 @@ MonoBehaviour:
     item: 4
   - _name: Sand Background
     _blockID: 13
-    _tile: {fileID: 0}
-    sprite: {fileID: 0}
+    _tile: {fileID: 11400000, guid: 6a63c0c826cab3f4ea878397525659ce, type: 2}
+    sprite: {fileID: 21300000, guid: c55abbb6e6450ac428d829a3c8852838, type: 3}
     removeDuration: 2
     item: 0
   - _name: Sand Background Top
     _blockID: 14
-    _tile: {fileID: 0}
-    sprite: {fileID: 0}
+    _tile: {fileID: 11400000, guid: c20608446e77f9c44a3819cef2944b0f, type: 2}
+    sprite: {fileID: 21300000, guid: 671f2c9bc738eca4fb24d16e4ab2b852, type: 3}
     removeDuration: 2
     item: 0
   - _name: Perl
     _blockID: 15
-    _tile: {fileID: 0}
-    sprite: {fileID: 0}
+    _tile: {fileID: 11400000, guid: bc76d9a08eedba04888f09f100db4f02, type: 2}
+    sprite: {fileID: 21300000, guid: da5efdfd1427ac74e8a650e5a691846e, type: 3}
     removeDuration: 4
     item: 0
   - _name: Tree_Stamm
