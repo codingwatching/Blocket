@@ -46,11 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockItemsInGame:
-  - name: Dirt
-    id: 0
+  - name: dirt
+    id: 1
     description: 
     itemType: 1
-    itemImage: {fileID: 21300000, guid: f01308597c751ff40bb35eecf55b550d, type: 3}
+    itemImage: {fileID: 21300000, guid: a3d714a46e945b04ea1753c4df358587, type: 3}
+    blockId: 3
+  - name: grass
+    id: 2
+    description: 
+    itemType: 1
+    itemImage: {fileID: 21300000, guid: 7e8c25b1aa5fb1b42a3de51adafd8a1f, type: 3}
     blockId: 3
   ToolItemsInGame: []
   EquipableItemsInGame: []
@@ -59,6 +65,7 @@ MonoBehaviour:
   - {fileID: 7804717356263989844}
   Enemies:
   - {fileID: 11400000, guid: 5fa23f42fd79765418b7e844d5d84e6b, type: 2}
+  CraftingStations: []
 --- !u!114 &1909828132783296647
 MonoBehaviour:
   m_ObjectHideFlags: 0

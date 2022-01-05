@@ -322,7 +322,6 @@ public class TerrainChunk
 			{
 				if (drops.Count > 1 && x != y)
 					CheckDropCollision(x, y);
-				//Drops[x].DropObject.transform.SetParent(DropObject.transform);
 			}
 		}
 	}
@@ -373,12 +372,6 @@ public class TerrainChunk
 	/// <param name="removable"></param>
 	public void RemoveDropfromView(Drop removable)
 	{
-		/*
-		removable.DropObject.GetComponent<SpriteRenderer>().sprite = null;
-		removable.DropObject.GetComponent<BoxCollider2D>().enabled = false;
-		removable.DropObject.transform.parent = null;
-		removable.DropObject = null;
-		*/
 		Drops.Remove(removable);
 		GameObject.Destroy(removable.DropObject);
 	}
@@ -399,11 +392,6 @@ public class TerrainChunk
 		//[Funktioniert, aber ned sch�n]
 
 		if (new System.Random(chunkPosition.x * GlobalVariables.WorldData.ChunkWidth + x).Next(1, 5) == 4 && x > GlobalVariables.Assets.Structures[GlobalVariables.WorldData.Biom[biom].Structures[0]].blocks.GetLength(0) && x < (32 - GlobalVariables.Assets.Structures[GlobalVariables.WorldData.Biom[biom].Structures[0]].blocks.GetLength(0))) {
-			//int rando = new System.Random(chunkPosition.x * GlobalVariables.WorldData.ChunkWidth + x).Next(5, 10);
-			//for (int i = 0;i<rando;i++)
-			//BlockIDsBG[x, y+i] = world.Strukturen[0].blocks[2,5];
-
-
 			for (int z = 0; z < GlobalVariables.Assets.Structures[GlobalVariables.WorldData.Biom[biom].Structures[0]].blocks.GetLength(0); z++) {
 				for (int q = 0; q < GlobalVariables.Assets.Structures[GlobalVariables.WorldData.Biom[biom].Structures[0]].blocks.GetLength(1); q++) {
                     try { 
@@ -412,16 +400,6 @@ public class TerrainChunk
 					}catch { }
 				}
 			}
-			//int breite=0;
-			//for(int b= rando+2; b > 4; b--)
-			//{
-			//    for(int o = -breite; o <= breite; o++)
-			//    {
-			//        if(BlockIDsBG[x + o, y + rando]==0)
-			//        BlockIDsBG[x+o, y+b] = 17;
-			//    }
-			//    breite++;
-			//}
 		}
 	}
 

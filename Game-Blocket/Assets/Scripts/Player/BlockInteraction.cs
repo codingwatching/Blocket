@@ -25,9 +25,7 @@ public class BlockInteraction : MonoBehaviour{
 	public void Update()
 	{
 		TerrainChunk chunk = GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y);
-		Inventory inv = GlobalVariables.Inventory;
 		Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-		ItemAssets itemAssets = GameObject.Find("Assets").GetComponent<ItemAssets>();
 
 		if (GameObject.FindGameObjectWithTag("SlotOptions") != null)
 			return;
@@ -35,8 +33,9 @@ public class BlockInteraction : MonoBehaviour{
 			return;
 		if (chunk.CollidewithDrop(GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).x, GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).y) != null)
 		{
+			//HEREEE IS SE PRRROOOOBLEM
 			Drop collissionDrop = chunk.CollidewithDrop(GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).x, GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).y);
-			TakeDrops(inv,itemAssets.BlockItemsInGame[collissionDrop.DropID], collissionDrop.Anzahl);
+			TakeDrops(GlobalVariables.Assets.BlockItemsInGame[collissionDrop.DropID-1], collissionDrop.Anzahl);
 			chunk.RemoveDropfromView(collissionDrop);
 		}
 		ChangeCoordinate(mouseWorldPos);
@@ -78,8 +77,6 @@ public class BlockInteraction : MonoBehaviour{
 	public void FixedUpdate()
 	{
 		GlobalVariables.WorldData.IgnoreDropCollision();
-		for (int x = 0; x < GlobalVariables.TerrainGeneration.ChunksVisibleLastUpdate.Count; x++)
-			GlobalVariables.TerrainGeneration.ChunksVisibleLastUpdate[x].InsertDrops();
 	}
 
 	#endregion
@@ -99,17 +96,17 @@ public class BlockInteraction : MonoBehaviour{
 	
 
 	/// <summary>
-	/// 
+	/// Moves drops into the Inventory
 	/// </summary>
 	/// <param name="inv"></param>
 	/// <param name="blockitem"></param>
 	/// <param name="anzahl"></param>
-	private void TakeDrops(Inventory inv,BlockItem blockitem,int anzahl)
+	private void TakeDrops(BlockItem blockitem,int anzahl)
 	{
 		//Player collides with Drop
 		for(int x=0;x<anzahl;x++)
-			inv.AddItem(blockitem);
-		GameObject.FindGameObjectWithTag("Inventory").GetComponent<UIInventory>().SynchronizeToHotbar();
+			GlobalVariables.Inventory.AddItem(blockitem);
+		GlobalVariables.UIInventory.SynchronizeToHotbar();
 	}
 
 	/// <summary>

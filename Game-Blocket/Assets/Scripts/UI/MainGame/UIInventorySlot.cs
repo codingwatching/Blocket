@@ -96,7 +96,7 @@ public class UIInventorySlot : MonoBehaviour
 	/// Asign <see cref="EventHandler"/> (Listeners) for Button-Presses Event
 	/// </summary>
 	public void Start() {
-		_uIInventory = GameObject.Find("UI").GetComponent<UIInventory>();
+		_uIInventory = GlobalVariables.UIInventory;
 		
 	}
 }

@@ -89,7 +89,7 @@ public class HealthScript : MonoBehaviour
         hearthSlot.gameObject.GetComponent<Image>().sprite = sprite;
         hearthSlot.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
         if(sprite==null)
-        hearthSlot.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 0);
+            hearthSlot.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 0);
     }
 
 }

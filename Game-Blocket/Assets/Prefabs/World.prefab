@@ -84,13 +84,13 @@ MonoBehaviour:
     _tile: {fileID: 11400000, guid: e1d9145a7b6f3234689ca6d9f7af1e68, type: 2}
     sprite: {fileID: 21300000, guid: 7e8c25b1aa5fb1b42a3de51adafd8a1f, type: 3}
     removeDuration: 3
-    item: 0
+    item: 2
   - _name: Dirt
     _blockID: 3
     _tile: {fileID: 11400000, guid: 0bcc34212cd215a4584d42c3c4ba8f29, type: 2}
-    sprite: {fileID: 21300000, guid: f01308597c751ff40bb35eecf55b550d, type: 3}
+    sprite: {fileID: 21300000, guid: a3d714a46e945b04ea1753c4df358587, type: 3}
     removeDuration: 5
-    item: 0
+    item: 1
   - _name: Sand-Top
     _blockID: 4
     _tile: {fileID: 11400000, guid: 6db0c34d3b5fc7b49a67163528b99ce5, type: 2}

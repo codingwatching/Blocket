@@ -303,6 +303,8 @@ public class TerrainGeneration : NetworkBehaviour {
 			lock (chunkTileInitializationQueue) {
 				chunkTileInitializationQueue.Enqueue(chunk);
 			}
+			chunk.InsertDrops();
+
 		};
 		new Thread(threadStart).Start();
 	}

@@ -73,11 +73,13 @@ public static class GlobalVariables {
 	}
 	private static GameObject _world;
 
-	public static UIInventory UIInventory { get; set; }
+	public static UIInventory UIInventory { get => GameObject.Find("UI").GetComponent<UIInventory>(); }
 
 	#region LocalPlayer
 	public static Inventory Inventory { get => _inventory; }
-	private static Inventory _inventory; public static PlayerVariables PlayerVariables { get => _playerVariables; }
+	private static Inventory _inventory; 
+	
+	public static PlayerVariables PlayerVariables { get => _playerVariables; }
 	private static PlayerVariables _playerVariables;
 	public static Vector3 LocalPlayerPos { get => LocalPlayer.transform.position; }
 

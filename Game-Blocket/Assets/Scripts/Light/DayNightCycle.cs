@@ -36,7 +36,6 @@ public class DayNightCycle : MonoBehaviour
     {
         // Lightincrease per sec = 1/(daylength[min] * 60[sec])
         float lightStrength =  Mathf.RoundToInt(inGameMinutes)/24f;
-        Debug.Log(lightStrength);
         globalLight.intensity = lightStrength; 
 
     }
