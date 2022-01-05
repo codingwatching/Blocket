@@ -14,6 +14,7 @@ public class ItemAssets : MonoBehaviour
     public List<UseAbleItem> UseableItemsInGame = new List<UseAbleItem>();
     public List<Structure> Structures = new List<Structure>();
     public List<Enemy> Enemies = new List<Enemy>();
+    public List<CraftingStation> CraftingStations = new List<CraftingStation>();
 
     
     private void Awake()

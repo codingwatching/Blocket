@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47b045bfe515ff45afe88645f743998, type: 3}
+  m_Name: Jungle
+  m_EditorClassIdentifier: 
+  index: 3
+  biomName: Jungle
+  ores: []
+  regions:
+  - regionRange: 1
+    blockID: 20
+  - regionRange: 2
+    blockID: 21
+  bgRegions:
+  - regionRange: 1
+    blockID: 14
+  - regionRange: 2
+    blockID: 13
+  structures: 
+  enemies: 
+  treeSpawnChance: 10
+  treeSpawnDistance: 5
+  stoneBlockId: 5
+  size: 1000
+  heightCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  biomtype: 00000000

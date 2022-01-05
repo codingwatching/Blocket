@@ -78,25 +78,32 @@ public class Structure : MonoBehaviour
     /// </summary>
     private void ReadFromFile()
     {
-        string[] lines = System.IO.File.ReadAllLines($"Docs/Structure{name}.txt");
-        char c = ',';
-        blocks = new byte[int.Parse(lines[0].Split(c)[0]), int.Parse(lines[0].Split(c)[1])];
-        int x = 0;
-        int y = 0;
-        for(int i=1;i < lines.Length; i++)
+        try
         {
-            if (lines[i].Equals("."))
+            string[] lines = System.IO.File.ReadAllLines($"Docs/Structure{name}.txt");
+            char c = ',';
+            blocks = new byte[int.Parse(lines[0].Split(c)[0]), int.Parse(lines[0].Split(c)[1])];
+            int x = 0;
+            int y = 0;
+            for (int i = 1; i < lines.Length; i++)
             {
-                y++;
-                x = 0;
+                if (lines[i].Equals("."))
+                {
+                    y++;
+                    x = 0;
+                }
+                else
+                {
+                    blocks[x, y] = byte.Parse(lines[i]);
+                    //Debug.Log(blocks[x, y]);
+                    x++;
+                }
+
             }
-            else
-            {
-                blocks[x, y] = byte.Parse(lines[i]);
-                //Debug.Log(blocks[x, y]);
-                x++;
-            }
-                
+        }catch
+        {
+            Debug.Log("File not Found");
+            ReadStructureFromTilemap();
         }
     }
 }

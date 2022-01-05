@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class ShowTimer : MonoBehaviour
 {
-
+    /// <summary>
+    /// Bruh berni dafür eine eigene Klasse?
+    /// </summary>
     void Update()
     {
-        GetComponent<Text>().text = DayNightCycle.hours + ":" + DayNightCycle.minutes + ":" + Mathf.RoundToInt(DayNightCycle.seconds);
+        GetComponent<Text>().text = Mathf.RoundToInt(DayNightCycle.inGameMinutes) +"h";
     }
 }

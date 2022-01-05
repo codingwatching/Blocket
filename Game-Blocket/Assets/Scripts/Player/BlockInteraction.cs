@@ -24,10 +24,6 @@ public class BlockInteraction : MonoBehaviour{
 	#region UnityMethods
 	public void Update()
 	{
-		//FABIAN PROBLEM WITH INV MOVE TILES NOT VALUES.
-
-		//Was is?
-
 		TerrainChunk chunk = GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y);
 		Inventory inv = GlobalVariables.Inventory;
 		Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -55,10 +51,6 @@ public class BlockInteraction : MonoBehaviour{
 
 		if (Input.GetKey(GlobalVariables.leftClick))
 		{
-
-			//if (GameObject.FindGameObjectWithTag("LeftClick")!=null)
-			//{
-				//CHECK IF IT IS A BLOCK OR NOT
 				try
 				{
 					chunk = GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y);
@@ -74,18 +66,11 @@ public class BlockInteraction : MonoBehaviour{
 				{
 						Debug.Log(e.Message);
 				}
-			//}
 		}
 
 		if (Input.GetKey(GlobalVariables.rightClick) &&
-			GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).BlockIDs[coordinate.x - GlobalVariables.WorldData.ChunkWidth * GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).ChunkPosition.x, coordinate.y - GlobalVariables.WorldData.ChunkHeight * GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).ChunkPosition.y] == 0 
-			//&& !(Input.mousePosition.y - 429 < 55 && Input.mousePosition.y - 429 > -5 && Input.mousePosition.x - 959 > -40 && Input.mousePosition.x - 959 < 40))
-			)
+			GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).BlockIDs[coordinate.x - GlobalVariables.WorldData.ChunkWidth * GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).ChunkPosition.x, coordinate.y - GlobalVariables.WorldData.ChunkHeight * GlobalVariables.WorldData.GetChunkFromCoordinate(coordinate.x, coordinate.y).ChunkPosition.y] == 0 )
 			{
-			///[TODO]
-				ItemAssets assets = GameObject.FindGameObjectWithTag("Assets").GetComponent<ItemAssets>();
-			//for (int x = 0; x < assets.BlockItemsInGame.Count; x++)
-			//    selectedBlock = (byte)assets.BlockItemsInGame[x].blockId;
 				SetTile(chunk);
 			}
 	}

@@ -81,8 +81,8 @@ MonoBehaviour:
     item: 0
   - _name: Grass
     _blockID: 2
-    _tile: {fileID: 11400000, guid: 02761f359227ea640b301f8ed4704793, type: 2}
-    sprite: {fileID: 21300000, guid: f01308597c751ff40bb35eecf55b550d, type: 3}
+    _tile: {fileID: 11400000, guid: e1d9145a7b6f3234689ca6d9f7af1e68, type: 2}
+    sprite: {fileID: 21300000, guid: 7e8c25b1aa5fb1b42a3de51adafd8a1f, type: 3}
     removeDuration: 3
     item: 0
   - _name: Dirt
@@ -118,7 +118,7 @@ MonoBehaviour:
   - _name: Dirt-Bg
     _blockID: 8
     _tile: {fileID: 11400000, guid: 30439b9c5e3b02142848ef927c278843, type: 2}
-    sprite: {fileID: 21300000, guid: 8991b656440141d459b084331263662e, type: 3}
+    sprite: {fileID: 21300000, guid: 5dc8ef344183da742997bb29906167eb, type: 3}
     removeDuration: 0
     item: 0
   - _name: Dirt-Bg-Top
@@ -166,13 +166,13 @@ MonoBehaviour:
   - _name: Tree_Stamm
     _blockID: 16
     _tile: {fileID: 11400000, guid: a2b039ad21dbea343a3af1d7a3f3e9c2, type: 2}
-    sprite: {fileID: 21300000, guid: 4318a7de18532f2409f3a2dd127ba0b8, type: 3}
+    sprite: {fileID: 21300000, guid: 13d45c7233bd553438197b709fc7f824, type: 3}
     removeDuration: 4
     item: 0
   - _name: Tree_Leaf
     _blockID: 17
-    _tile: {fileID: 11400000, guid: 0d94620a8cdce1e4694bd8d615d2101c, type: 2}
-    sprite: {fileID: 21300000, guid: fbe6e8a4ae870e3478c904052e30f1d8, type: 3}
+    _tile: {fileID: 11400000, guid: 9b0da5a191fd143469175eb329eb16d1, type: 2}
+    sprite: {fileID: 21300000, guid: dbb6d715d557d214690fc1d6444e6327, type: 3}
     removeDuration: 4
     item: 0
   - _name: Cactus_Leaf
@@ -185,6 +185,30 @@ MonoBehaviour:
     _blockID: 19
     _tile: {fileID: 11400000, guid: 6ce94ed2ae6b5c7448c1717aac7342ec, type: 2}
     sprite: {fileID: 21300000, guid: 01c6b008d66f42d46b162c2546a9a8fa, type: 3}
+    removeDuration: 4
+    item: 0
+  - _name: leaf-border-right
+    _blockID: 20
+    _tile: {fileID: 11400000, guid: eed7441c14d69834784d1cd68c49acb0, type: 2}
+    sprite: {fileID: 21300000, guid: e2ec937983a7a5e4f8fe9a13f42c200a, type: 3}
+    removeDuration: 4
+    item: 0
+  - _name: leaf-border-left
+    _blockID: 21
+    _tile: {fileID: 11400000, guid: 579d8d2af3bcbe646ba6a575da8bab2b, type: 2}
+    sprite: {fileID: 21300000, guid: 5f2dd96b148ea4d4b911d61532464770, type: 3}
+    removeDuration: 4
+    item: 0
+  - _name: leaf-down-left
+    _blockID: 22
+    _tile: {fileID: 11400000, guid: 3ad81a0c33ca79047af50be55cbe23ba, type: 2}
+    sprite: {fileID: 21300000, guid: 8026b315021e086469b6be955b842b87, type: 3}
+    removeDuration: 4
+    item: 0
+  - _name: leaf-down-right
+    _blockID: 23
+    _tile: {fileID: 11400000, guid: bf8d4b2436c0d9f46880736a2652ad5a, type: 2}
+    sprite: {fileID: 21300000, guid: 82ab7fb402abd3241aecacef2a386cc4, type: 3}
     removeDuration: 4
     item: 0
   chunkWidth: 24
