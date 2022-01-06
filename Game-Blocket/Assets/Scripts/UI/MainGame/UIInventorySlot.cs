@@ -89,14 +89,13 @@ public class UIInventorySlot : MonoBehaviour
 	}
 
 	public void OnMouseOver() {
-		Debug.Log("A");
+		Debug.Log("ABC");
 	}
 
-	/// <summary>
-	/// Asign <see cref="EventHandler"/> (Listeners) for Button-Presses Event
-	/// </summary>
-	public void Start() {
+    /// <summary>
+    /// Asign <see cref="EventHandler"/> (Listeners) for Button-Presses Event
+    /// </summary>
+    public void Start() {
 		_uIInventory = GlobalVariables.UIInventory;
-		
 	}
 }

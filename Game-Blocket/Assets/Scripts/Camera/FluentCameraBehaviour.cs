@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// @Cse19455
-/// [TODO: Optimize with delegate]
+/// Camera Behaviour for [Cameramovekey]
 /// </summary>
 public class FluentCameraBehaviour : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class FluentCameraBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(GlobalVariables.moveCamera))
         {
             //if(OffSetX< (GlobalVariables.World.GetComponentInChildren<Grid>().LocalToWorld(Input.mousePosition).x / 60) - 18  || -OffSetX > (GlobalVariables.World.GetComponentInChildren<Grid>().LocalToWorld(Input.mousePosition).x / 60 - 18))
             //if (0 < (GlobalVariables.World.GetComponentInChildren<Grid>().LocalToWorld(Input.mousePosition).x / 60) - 18)

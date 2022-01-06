@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277896026812111676}
   - component: {fileID: 5277896026812111679}
+  - component: {fileID: 6242477852181588168}
   m_Layer: 0
   m_Name: CraftingSlot
   m_TagString: Untagged
@@ -84,6 +85,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6242477852181588168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5277896026812111677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d57d66c47fe1094db7064772dc79b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uIInventory: {fileID: 0}
+  textDown: {fileID: 0}
+  button: {fileID: 0}
+  itemImage: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  imgActive: {fileID: 0}
+  imagInactive: {fileID: 0}
+  defaultSprite: {fileID: 0}
+  isHotBarSlot: 0
+  parent: {fileID: 0}
 --- !u!1 &7899557921777468620
 GameObject:
   m_ObjectHideFlags: 0

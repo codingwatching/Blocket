@@ -6,23 +6,47 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
-/// Basic item Class<br></br>
+/// Item Class<br></br>
 /// </summary>
+
 [Serializable]
 public abstract class Item{
-	public string name;
-	public uint id;
-	public string description;
-	public ItemType itemType;
-	public Sprite itemImage;
 
-	/// <summary>How much of the Item can be hold.</summary>
-	public enum ItemType {
+    #region Vars
+    /// <summary>
+    /// Item Name
+    /// </summary>
+    public string name;
+	/// <summary>
+	/// Item Id
+	/// </summary>
+	public byte id;
+	/// <summary>
+	/// Item description
+	/// </summary>
+	public string description;
+	/// <summary>
+	/// Type of the item (determines behiour at hand)
+	/// </summary>
+	public ItemType itemType;
+	/// <summary>
+	/// Item Sprite
+	/// </summary>
+	public Sprite itemImage;
+	/// <summary>
+	/// Item Crafting Recipe 
+	/// <!--If null => not craftable-->
+	/// </summary>
+	public CraftingRecipe recipe;
+    #endregion
+
+    /// <summary>How much of the Item can be hold.</summary>
+    public enum ItemType {
 		SINGLE, STACKABLE
 	}
 
 	/// <summary>
-	/// Euqals...
+	/// Euqals overriden
 	/// </summary>
 	/// <param name="obj">Other Object...</param>
 	/// <returns><see langword="true"/> if the <see cref="Item.id"/> is the same</returns>
@@ -38,9 +62,11 @@ public abstract class Item{
 	}
 }
 
+#region ItemVariants
 [Serializable]
 public class BlockItem : Item {
-	public uint blockId;
+	public byte blockId;
+	public BlockData data;
 }
 
 [Serializable]
@@ -63,3 +89,4 @@ public class EquipableItem : Item {
 public class UseAbleItem : Item{
 
 }
+#endregion

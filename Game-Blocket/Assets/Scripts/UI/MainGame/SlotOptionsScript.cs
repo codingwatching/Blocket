@@ -38,7 +38,6 @@ public class SlotOptionsScript : MonoBehaviour, IPointerClickHandler {
         else if (eventData.button == PointerEventData.InputButton.Middle)
         {
             Debug.Log("Middle click");
-            ///[TODO]
         }
         ///React on RightClick Event
         else if (eventData.button == PointerEventData.InputButton.Right)

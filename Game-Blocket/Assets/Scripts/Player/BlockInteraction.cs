@@ -11,7 +11,8 @@ using UnityEngine.Tilemaps;
 /// Used for Interacten per Mouse with Tilemap<br></br>
 /// <b>TODO: Cleanup!!</b>
 /// </summary>
-public class BlockInteraction : MonoBehaviour{
+public class BlockInteraction : MonoBehaviour {
+
 	public Camera mainCamera;
 	public int selectedBlock;
 	public Vector3Int coordinate;
@@ -33,7 +34,6 @@ public class BlockInteraction : MonoBehaviour{
 			return;
 		if (chunk.CollidewithDrop(GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).x, GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).y) != null)
 		{
-			//HEREEE IS SE PRRROOOOBLEM
 			Drop collissionDrop = chunk.CollidewithDrop(GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).x, GlobalVariables.World.GetComponentInChildren<Grid>().WorldToCell(PlayerPos).y);
 			TakeDrops(GlobalVariables.Assets.BlockItemsInGame[collissionDrop.DropID-1], collissionDrop.Anzahl);
 			chunk.RemoveDropfromView(collissionDrop);

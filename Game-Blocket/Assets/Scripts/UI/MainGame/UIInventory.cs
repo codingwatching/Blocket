@@ -91,7 +91,7 @@ public class UIInventory : MonoBehaviour
 	/// Initzialize the AtHand<see cref="UIInventorySlot"/>
 	/// </summary>
 	private void InitAtHand() {
-		atHandSlot = Instantiate(prefabItemSlot, GameObject.Find("Inventory").transform);
+		atHandSlot = Instantiate(prefabItemSlot, GlobalVariables.Inventory.transform);
 		atHandSlot.name = "SlotAtHand";
 		atHandSlot.SetActive(false);
 		Destroy(atHandSlot.GetComponentInChildren<Image>());

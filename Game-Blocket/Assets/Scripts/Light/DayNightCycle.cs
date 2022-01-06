@@ -8,9 +8,6 @@ using UnityEngine.Rendering;
 public class DayNightCycle : MonoBehaviour
 {
     public UnityEngine.Experimental.Rendering.Universal.Light2D globalLight;
-    private int seconds;
-    private int minutes;
-    private int hours;
 
     //cannot be over 60[min] 
     public static int Daylength = 3;
@@ -18,9 +15,9 @@ public class DayNightCycle : MonoBehaviour
     public static int Seconds { get => DateTime.Now.TimeOfDay.Seconds; }
     public static int Minutes { get => DateTime.Now.TimeOfDay.Minutes; }
     //iwie komplett falsch lul 
-    public static float inGameSeconds { get => (24f / Daylength/100f*60)*(float)Seconds; }
+    public static float inGameSeconds { get => (24f/Daylength/100f*60)*(float)Seconds; }
 
-    public static float inGameMinutes { get => (24f/Daylength)*(umrechner()+Seconds*0.01f); }
+    public static int inGameMinutes { get => umrechner(); }
 
     // Start is called before the first frame update
     // Update is called once per frame
@@ -43,10 +40,10 @@ public class DayNightCycle : MonoBehaviour
     public static int umrechner()
     {
         int s = Minutes;
-        while (s >= Daylength)
+        while (s > Daylength)
         {
             s -= Daylength;
         }
-        return s;
+        return Mathf.FloorToInt(24f / Daylength)*s;
     }
 }

@@ -45,6 +45,7 @@ public static class GlobalVariables {
 	public static KeyCode jump = KeyCode.Space;
 	public static KeyCode roll = KeyCode.LeftControl;
 	public static KeyCode crawl = KeyCode.LeftShift;
+	public static KeyCode moveCamera = KeyCode.LeftShift;
 	#endregion
 
 	#region Properties + Fields

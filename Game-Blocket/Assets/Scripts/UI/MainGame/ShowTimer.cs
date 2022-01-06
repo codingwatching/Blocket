@@ -10,6 +10,6 @@ public class ShowTimer : MonoBehaviour
     /// </summary>
     void Update()
     {
-        GetComponent<Text>().text = Mathf.RoundToInt(DayNightCycle.inGameMinutes) +"h";
+        GetComponentInChildren<Text>().text = DayNightCycle.inGameMinutes +"h";
     }
 }
