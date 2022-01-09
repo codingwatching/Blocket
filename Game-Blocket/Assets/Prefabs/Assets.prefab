@@ -50,14 +50,30 @@ MonoBehaviour:
     id: 1
     description: 
     itemType: 1
-    itemImage: {fileID: 21300000, guid: a3d714a46e945b04ea1753c4df358587, type: 3}
+    itemImage: {fileID: 21300000, guid: aecaa40757bb6fb47b4ad9f674e44841, type: 3}
+    recipe: {fileID: 0}
     blockId: 3
+    data:
+      _name: 
+      _blockID: 0
+      _tile: {fileID: 0}
+      sprite: {fileID: 0}
+      removeDuration: 0
+      item: 0
   - name: grass
     id: 2
     description: 
     itemType: 1
     itemImage: {fileID: 21300000, guid: 7e8c25b1aa5fb1b42a3de51adafd8a1f, type: 3}
+    recipe: {fileID: 0}
     blockId: 3
+    data:
+      _name: 
+      _blockID: 0
+      _tile: {fileID: 0}
+      sprite: {fileID: 0}
+      removeDuration: 0
+      item: 0
   ToolItemsInGame: []
   EquipableItemsInGame: []
   UseableItemsInGame: []

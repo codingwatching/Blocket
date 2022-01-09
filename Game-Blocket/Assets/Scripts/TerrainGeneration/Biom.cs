@@ -4,6 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class Biom : ScriptableObject, ISerializationCallbackReceiver {
+
 	#region Defaultsettings
 	[SerializeField]
 	private int index;

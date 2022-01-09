@@ -308,11 +308,11 @@ public struct BlockData
 
 	#region Graphics
 	[SerializeField]
-	private TileBase _tile;
+	private RuleTile _tile;
 	[SerializeField]
 	private Sprite sprite;
 
-	public TileBase Tile { get => _tile; set => _tile = value; }
+	public RuleTile Tile { get => _tile; set => _tile = value; }
 	public Sprite Sprite { get => sprite; set => sprite = value; }
 	#endregion
 

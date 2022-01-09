@@ -18,21 +18,18 @@ MonoBehaviour:
   - name: Bernstein
     noiseValueFrom: 0.7
     noiseValueTo: 0.701
-    blockID: 10
+    blockID: 5
   regions:
   - regionRange: 1
     blockID: 2
-  - regionRange: 2
-    blockID: 3
   bgRegions:
   - regionRange: 1
-    blockID: 9
-  - regionRange: 2
-    blockID: 8
-  structures: 00
+    blockID: 4
+  structures: 
+  enemies: 
   treeSpawnChance: 5
   treeSpawnDistance: 5
-  stoneBlockId: 12
+  stoneBlockId: 7
   size: 1000
   heightCurve:
     serializedVersion: 2

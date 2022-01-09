@@ -92,6 +92,7 @@ public class UIInventorySlot : MonoBehaviour
 		Debug.Log("ABC");
 	}
 
+
     /// <summary>
     /// Asign <see cref="EventHandler"/> (Listeners) for Button-Presses Event
     /// </summary>

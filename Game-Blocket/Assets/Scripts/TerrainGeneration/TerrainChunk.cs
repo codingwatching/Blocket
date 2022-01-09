@@ -193,7 +193,7 @@ public class TerrainChunk
 				if (x % 5 == 0 && chunkPosition.y == 0)
 				{
 					//	//try to spawn a Tree
-					GenerateTrees(x, positionHeight, biom.Index);
+					//GenerateTrees(x, positionHeight, biom.Index);
 				}
 			}
 		}
@@ -204,9 +204,19 @@ public class TerrainChunk
 	/// </summary>
 	public void PlaceAllTiles() {
 		for (int x = 0; x < GlobalVariables.WorldData.ChunkWidth; x++) {
-			for (int y = 0; y < GlobalVariables.WorldData.ChunkHeight; y++) {
-				PlaceTile(x, y, GlobalVariables.WorldData.Blocks[BlockIDs[x, y]].Tile);
-				PlaceTileInBG(x, y, GlobalVariables.WorldData.Blocks[BlockIDsBG[x, y]].Tile);
+			for (int y = 0; y < GlobalVariables.WorldData.ChunkHeight; y++)
+            {
+				if (x == GlobalVariables.WorldData.ChunkWidth || x == 0 || y == 0 || y == GlobalVariables.WorldData.ChunkHeight)
+                {
+					PlaceTile(x, y, GlobalVariables.WorldData.Blocks[BlockIDs[x, y]].Tile);
+					PlaceTileInBG(x, y, GlobalVariables.WorldData.Blocks[BlockIDsBG[x, y]].Tile);
+				}
+                else
+                {
+
+					PlaceTile(x, y, GlobalVariables.WorldData.Blocks[BlockIDs[x, y]].Tile);
+					PlaceTileInBG(x, y, GlobalVariables.WorldData.Blocks[BlockIDsBG[x, y]].Tile);
+				}
 			}
 		}
 	}
