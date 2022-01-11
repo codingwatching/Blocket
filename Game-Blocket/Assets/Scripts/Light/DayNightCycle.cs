@@ -7,43 +7,93 @@ using UnityEngine.Rendering;
 
 public class DayNightCycle : MonoBehaviour
 {
-    public UnityEngine.Experimental.Rendering.Universal.Light2D globalLight;
 
-    //cannot be over 60[min] 
-    public static int Daylength = 3;
+	[Header("Resources")]
+	public UnityEngine.Experimental.Rendering.Universal.Light2D worldLight;
 
-    public static int Seconds { get => DateTime.Now.TimeOfDay.Seconds; }
-    public static int Minutes { get => DateTime.Now.TimeOfDay.Minutes; }
-    //iwie komplett falsch lul 
-    public static float inGameSeconds { get => (24f/Daylength/100f*60)*(float)Seconds; }
+	[Min(2)]
+	public float minutesPerDay;
+	[Range(0, 1)]
+	private float lightValue;
+	public bool alwaysLight;
 
-    public static int inGameMinutes { get => umrechner(); }
+	public LightingSettings lightingSettings;
+	public Material daySkybox;
+	public Material blendSkybox;
+	public Material nightSkybox;
 
-    // Start is called before the first frame update
-    // Update is called once per frame
-    void Update()
-    {
-        calcInGameTime();
-    }
+	/**<summary>Used for storing the End of the Day</summary>*/
+	private DateTime ended;
 
-    /// <summary>
-    /// Calculates the In Game Time based on the actual RealLife-Daytime
-    /// </summary>
-    public void calcInGameTime()
-    {
-        // Lightincrease per sec = 1/(daylength[min] * 60[sec])
-        float lightStrength =  Mathf.RoundToInt(inGameMinutes)/24f;
-        globalLight.intensity = lightStrength; 
+	/**<summary>Calls: <see cref="Recalc"/></summary>*/
+	private void Start()
+	{
+		if (alwaysLight)
+		{
+			RenderSettings.skybox = daySkybox;
+			worldLight.intensity = 1;
+			worldLight.transform.rotation = Quaternion.Euler(90, 0, 0);
+		}
+		else
+			ended = DateTime.UtcNow.AddMinutes(minutesPerDay / 2);
+	}
 
-    }
+	/**<summary>Sets the ended variable</summary>*/
+	public void Recalc()
+	{
+		ended = DateTime.UtcNow.AddMinutes(minutesPerDay);
+	}
 
-    public static int umrechner()
-    {
-        int s = Minutes;
-        while (s > Daylength)
-        {
-            s -= Daylength;
-        }
-        return Mathf.FloorToInt(24f / Daylength)*s;
-    }
+	public double GetMinute()
+	{
+		return -(DateTime.UtcNow - ended).TotalMinutes;
+	}
+	public double GetMinuteFrom0()
+	{
+		return minutesPerDay + (DateTime.UtcNow - ended).TotalMinutes;
+	}
+
+	//f(x) = -1/64 * (x - 8)^2 +1
+
+	/**<summary>Calculates the Light intensity.</summary>*/
+	public void Update()
+	{
+		if (alwaysLight)
+			return;
+		if (ended <= DateTime.UtcNow)
+			Recalc();
+
+		//sets the Skybox
+		float blendtime = minutesPerDay / 8;
+
+		if (GetMinuteFrom0() <= minutesPerDay / 4 - blendtime / 2 || GetMinuteFrom0() >= 3 * minutesPerDay / 4 + blendtime / 2)
+		{
+			RenderSettings.skybox = nightSkybox;
+		}
+		else if (GetMinuteFrom0() > minutesPerDay / 4 + blendtime / 2 && GetMinuteFrom0() < 3 * minutesPerDay / 4 - blendtime / 2)
+		{
+			RenderSettings.skybox = daySkybox;
+		}
+		else
+			RenderSettings.skybox = blendSkybox;
+
+
+		float angle = 0f;
+
+		if ((GetMinuteFrom0() < minutesPerDay / 4) || (GetMinuteFrom0() > (3 * minutesPerDay) / 4))
+			worldLight.enabled = false;
+		else
+			worldLight.enabled = true;
+
+		angle = (float)((360 / minutesPerDay) * GetMinuteFrom0()) - 90;
+		//Debug.Log($"{GetMinuteFrom0()}, {minutesPerDay / 4}, {(3 * minutesPerDay) / 4}, {angle}");
+		if (worldLight.enabled)
+			worldLight.transform.rotation = Quaternion.Euler(angle, 0, 0);
+
+		double a = -16 / Math.Pow(minutesPerDay, 2);
+
+		worldLight.intensity = (float)(a * Math.Pow((GetMinuteFrom0() - minutesPerDay / 2), 2) + 1);
+		//Debug.Log(worldLight.intensity);
+		//worldLight.intensity = (float)(Math.Pow((ended - DateTime.UtcNow).TotalMinutes - minutesPerDay / 2, 2) / -Math.Pow(minutesPerDay / 2, 2) + 1);
+	}
 }

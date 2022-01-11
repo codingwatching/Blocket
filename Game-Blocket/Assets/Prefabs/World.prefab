@@ -65,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biom:
   - {fileID: 11400000, guid: 29b0f6e63e160294face5a7539aa68dc, type: 2}
+  - {fileID: 11400000, guid: 02096aa664f42994c9a70a176be1abf5, type: 2}
   blocks:
   - _name: air
     _blockID: 0
@@ -114,6 +115,12 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: c0e395068a372ce4393ae6a53167171f, type: 3}
     removeDuration: 7
     item: 4
+  - _name: draconic
+    _blockID: 8
+    _tile: {fileID: 11400000, guid: c5209d3760ee0ed43a0f20c0fa172b50, type: 2}
+    sprite: {fileID: 21300000, guid: 523f03441ce9136449f48258698d8889, type: 3}
+    removeDuration: 4
+    item: 0
   - _name: Sand Background
     _blockID: 13
     _tile: {fileID: 0}

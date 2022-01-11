@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WatchRotationscript : MonoBehaviour
 {
+    /*
     public GameObject hourCounter;
     int oldhour;
     // Start is called before the first frame update
@@ -35,6 +36,6 @@ public class WatchRotationscript : MonoBehaviour
         }
         Debug.Log(((DayNightCycle.inGameMinutes / 24f) * 360f));
     }
-
+    */
 
 }

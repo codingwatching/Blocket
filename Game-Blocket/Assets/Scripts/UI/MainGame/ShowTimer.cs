@@ -10,6 +10,6 @@ public class ShowTimer : MonoBehaviour
     /// </summary>
     void Update()
     {
-        GetComponentInChildren<Text>().text = DayNightCycle.inGameMinutes +"h";
+        //GetComponentInChildren<Text>().text = DayNightCycle.inGameMinutes +"h";
     }
 }

@@ -10656,8 +10656,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: daySkybox
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: worldLight
+      value: 
+      objectReference: {fileID: 6302407554487812850}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: blendSkybox
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: nightSkybox
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: minutesPerDay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210210349162952315, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+      propertyPath: lightingSettings
+      value: 
+      objectReference: {fileID: 4890085278179872738, guid: e33db8e1856c7bb49b64bb683a20f435, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+--- !u!114 &6302407554487812850 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3757198564531867850, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
+  m_PrefabInstance: {fileID: 7157036158356787768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6829652690408784474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4437499843126022242, guid: 1c9b2240e512dc74d903ac652ce9ecc4, type: 3}
