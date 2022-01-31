@@ -60,6 +60,9 @@ MonoBehaviour:
   - {fileID: 0}
   Enemies:
   - {fileID: 11400000, guid: 5fa23f42fd79765418b7e844d5d84e6b, type: 2}
+  _recipes: []
+  CraftingStationBlocks:
+    keyData: 
 --- !u!114 &1909828132783296647
 MonoBehaviour:
   m_ObjectHideFlags: 0

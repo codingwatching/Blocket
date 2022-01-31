@@ -233,6 +233,8 @@ public class UIInventory : MonoBehaviour {
 		inventoryBackgroundImage.color = inventoryBackground;
 	}
 
+	private bool craftingUIOpened=false;
+
 	/// <summary>Returns and sets if the inventory should open</summary>
 	public bool InventoryOpened {
 		get {
@@ -243,9 +245,13 @@ public class UIInventory : MonoBehaviour {
 			if (value) {
 				//TODO: Optional things to do... Example: Lock Mouseplace or break
 				uiParent.SetActive(true);
+				if (CraftingUIOpened)
+					uiParent.transform.position = new Vector3(uiParent.transform.position.x + 900, uiParent.transform.position.y, uiParent.transform.position.z);
 			} else {
 				//TODO: Optional things to do...
 				uiParent.SetActive(false);
+				if(CraftingUIOpened)
+					uiParent.transform.position = new Vector3(uiParent.transform.position.x - 900, uiParent.transform.position.y, uiParent.transform.position.z);
 			}
 
 		}
@@ -262,12 +268,14 @@ public class UIInventory : MonoBehaviour {
 		set { titleText.text = value; }
 	}
 
-	#region Bidirectional Sync
+    public bool CraftingUIOpened { get => craftingUIOpened; set => craftingUIOpened = value; }
 
-	/// <summary>
-	/// Synchronizes Hotbar State of Slots Row 1
-	/// </summary>
-	public void SynchronizeToInv() {
+    #region Bidirectional Sync
+
+    /// <summary>
+    /// Synchronizes Hotbar State of Slots Row 1
+    /// </summary>
+    public void SynchronizeToInv() {
 		foreach (UIInventorySlot sl in _inventory.InvSlots) {
 			if (sl.isHotBarSlot) {
 				///[TODO]

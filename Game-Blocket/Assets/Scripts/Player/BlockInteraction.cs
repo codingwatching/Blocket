@@ -35,6 +35,7 @@ public class BlockInteraction : MonoBehaviour {
 		SetFocusGO(blockHoverdAbsolute);
 		byte targetBlockID = thisChunk.ChunkData.blocks[blockInchunkCoord.x, blockInchunkCoord.y];
 
+        
 		///Reset if not Pressed
 		if (BreakCoroutine != null && !Input.GetKey(GameManager.SPNow.Keys["MainInteractionKey"])) {
 			if(DebugVariables.blockInteractionCR)
@@ -57,6 +58,14 @@ public class BlockInteraction : MonoBehaviour {
 		}
 
 		if (Input.GetKey(GameManager.SPNow.Keys["SideInteractionKey"])) {
+			if (GlobalVariables.ItemAssets.CraftingStationBlocks.Find(x => x.Id.Equals(targetBlockID))!=null)
+			{
+				///[TODO] - Open Crafting Interface
+				CraftingStation ctStation = GlobalVariables.ItemAssets.CraftingStationBlocks.Find(x => x.Id.Equals(targetBlockID)).Station;
+				Debug.Log(ctStation.Slotheight);
+			}
+
+
 			if (DebugVariables.blockInteractionInfo)
 				Debug.Log($"{blockHoverdAbsolute}, {blockInchunkCoord}, {thisChunk.ChunkData.ChunkPositionInt}");
 			///UNDONE
@@ -100,4 +109,12 @@ public class BlockInteraction : MonoBehaviour {
 			inv.AddItem(blockitem);
 		GameObject.FindGameObjectWithTag("Inventory").GetComponent<UIInventory>().SynchronizeToHotbar();
 	}
+
+	/// <summary>
+	/// Executing the specified IntercommunicationTask  
+	/// </summary>
+	private void DeviantIntercommunication()
+    {
+
+    }
 }

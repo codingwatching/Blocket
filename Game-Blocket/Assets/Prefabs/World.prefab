@@ -187,10 +187,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: 01c6b008d66f42d46b162c2546a9a8fa, type: 3}
     removeDuration: 4
     item: 0
+  - _name: craftingbench
+    _blockID: 20
+    _tile: {fileID: 11400000, guid: fc339ad711188e34bacec6f44c582e8e, type: 2}
+    sprite: {fileID: 21300000, guid: efca85bea26ff7d4cafbc93b289b549a, type: 3}
+    removeDuration: 4
+    item: 0
   chunkWidth: 32
   chunkHeight: 32
   chunkDistance: 4
-  caveSize: 0.6
   seed: 1337
   scale: 80
   octives: 5
@@ -227,7 +232,6 @@ MonoBehaviour:
   groupdistance: 1.5
   pickUpDistance: 1.5
   initCaveSize: 0
-  strukturen: []
   stoneSize: 0
 --- !u!1 &1651735029580647344
 GameObject:
