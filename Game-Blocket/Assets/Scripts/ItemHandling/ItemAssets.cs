@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using static UnityEditor.Progress;
+
 /// <summary>
 /// Handles all items in Game
 /// </summary>
@@ -29,6 +31,8 @@ public class ItemAssets : MonoBehaviour
 	}
 
 	public Item GetItemFromItemID(uint itemId) {
+		if (itemId == 0)
+			return null;
 		foreach (Item item in BlockItemsInGame)
 			if (item.id == itemId)
 				return item;
@@ -43,5 +47,21 @@ public class ItemAssets : MonoBehaviour
 				return item;
 		Debug.LogWarning($"Item not found: {itemId}");
 		return null;
+	}
+
+	public uint GetItemIdFromBlockID(byte blockID)
+	{
+		foreach (BlockItem item in BlockItemsInGame)
+			if (item.blockId == blockID)
+				return item.id;
+		return 0;
+	}
+
+	public byte GetBlockIdFromItemID(uint itemId)
+	{
+		foreach (BlockItem item in BlockItemsInGame)
+			if (item.id == itemId)
+				return item.blockId;
+		return 0;
 	}
 }

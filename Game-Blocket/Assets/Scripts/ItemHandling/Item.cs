@@ -37,7 +37,7 @@ public abstract class Item{
 
 [Serializable]
 public class BlockItem : Item {
-	public uint blockId;
+	public byte blockId;
 }
 
 [Serializable]

@@ -31,7 +31,13 @@ public static class GlobalVariables {
 
 	#region Properties + Fields
 	public static GameManager GameManager { get; set; }
-	public static GameObject localUI;
+	public static GameObject LocalUI { get => _localUI; set
+		{
+			_localUI = value;
+			UIInventory = value.GetComponentInChildren<UIInventory>();
+		}
+	}
+	private static GameObject _localUI;
 	//public static readonly List<GameObject> players = new List<GameObject>();
 
 	#region Assets

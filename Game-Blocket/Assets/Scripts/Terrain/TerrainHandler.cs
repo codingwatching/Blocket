@@ -15,7 +15,12 @@ using static TerrainChunk;
 /// </summary>
 public  class TerrainHandler : MonoBehaviour
 {
+	private static readonly bool useItemer = false;
+	private readonly uint _checkTime = 1000;
+	private readonly byte _updatePayload = 2;
+
 	public GameObject ChunkParent;
+
 	public static Dictionary<Vector2Int, TerrainChunk> Chunks { get; } = new Dictionary<Vector2Int, TerrainChunk>();
 	public static Queue<TerrainChunk> ChunkCollisionQueue { get;} = new Queue<TerrainChunk>();
 	public static Queue<TerrainChunk> ChunkVisibleQueue { get;} = new Queue<TerrainChunk>();
@@ -24,9 +29,9 @@ public  class TerrainHandler : MonoBehaviour
 
 	public WorldData WD => GlobalVariables.WorldData;
 
-	private static readonly bool useItemer = false;
-	private readonly uint _checkTime = 1000;
-	private readonly byte _updatePayload = 2;
+	//Not multiplayer save
+	public Vector2Int CurrentChunkCoord => new Vector2Int(Mathf.RoundToInt(PlPosNow.x / WD.ChunkWidth), Mathf.RoundToInt(PlPosNow.y / WD.ChunkHeight));
+
 	public Timer TimerInstance { get; private set; }
 	public static Task TerrainTask { get; private set; }
 	public static Vector3 PlPosNow { get; private set; }
@@ -55,12 +60,33 @@ public  class TerrainHandler : MonoBehaviour
 
 	private void FixedUpdate() {
 		if (Input.GetKeyDown(KeyCode.L))
-		Debug.Log($"{ChunkVisibleQueue.Count}, {ChunkCollisionQueue.Count}, {ChunkTileInitializationQueue.Count}");
+			Debug.Log($"{ChunkVisibleQueue.Count}, {ChunkCollisionQueue.Count}, {ChunkTileInitializationQueue.Count}");
 		if (!useItemer)
 			CheckChunksAroundPlayerStatic();
+		if (GameManager.State != GameState.INGAME)
+			return;
+		CheckDrops();
 	}
 
-	void Update() => UpdateChunks(null);
+	/// <summary>
+	/// TODO: 
+	/// </summary>
+    private void CheckDrops()
+    {
+		int posDist = 2;
+
+		TerrainChunk tc = GetChunkFromCoordinate(GlobalVariables.LocalPlayerPos.x, GlobalVariables.LocalPlayerPos.y) ?? throw new NullReferenceException($"Chunk not found!");;
+
+		foreach(Drop drop in tc.Drops){
+			if (Vector3.Distance(drop.GameObject.transform.position, GlobalVariables.LocalPlayerPos) < posDist)
+            {
+				tc.PickedUpDrop(drop);
+				break;
+			}
+		}
+	}
+
+    void Update() => UpdateChunks(null);
 
 	public void LateUpdate() {
 		PlPosLast = PlPosNow;
@@ -102,14 +128,14 @@ public  class TerrainHandler : MonoBehaviour
 		///TileInit
 		lock (ChunkTileInitializationQueue) {
 			if (ChunkTileInitializationQueue.Count > 0)
-			for (int i = 0; i < ChunkTileInitializationQueue.Count && i < fUP; i++) {
-				TerrainChunk tc = ChunkTileInitializationQueue.Dequeue();
-				if (!tc.IsImported)
-					tc.ImportChunk(ChunkParent);
-				else
-					if (DebugVariables.showMultipleTasksOrExecution)
-						Debug.LogWarning($"Already Imported: {tc.ChunkData.chunkPosition}");
-			}
+				for (int i = 0; i < ChunkTileInitializationQueue.Count && i < fUP; i++) {
+					TerrainChunk tc = ChunkTileInitializationQueue.Dequeue();
+					if (!tc.IsImported)
+						tc.ImportChunk(ChunkParent);
+					else
+						if (DebugVariables.showMultipleTasksOrExecution)
+							Debug.LogWarning($"Already Imported: {tc.ChunkData.chunkPosition}");
+				}
 					
 		}
 
@@ -160,11 +186,10 @@ public  class TerrainHandler : MonoBehaviour
 		if (PlPosNow == PlPosLast && GameManager.State == GameState.INGAME)
 			return;
 		bool noUpdates = true;
-		Vector2Int currentChunkCoord = new Vector2Int(Mathf.RoundToInt(PlPosNow.x / WD.ChunkWidth), Mathf.RoundToInt(PlPosNow.y / WD.ChunkHeight));
-
+		
 		for (int x = -WD.ChunkDistance; x <= WD.ChunkDistance; x++) {
 			for (int y = -WD.ChunkDistance; y <= WD.ChunkDistance; y++) {
-				bool needsWork = SearchChunk(new Vector2Int(currentChunkCoord.x + x, currentChunkCoord.y + y));
+				bool needsWork = SearchChunk(new Vector2Int(CurrentChunkCoord.x + x, CurrentChunkCoord.y + y));
 				if (needsWork && DebugVariables.showMultipleTasksOrExecution)
 					Debug.Log($"{x}, {y}");
 				if (needsWork && noUpdates)

@@ -19,7 +19,7 @@ public class BlockInteraction : MonoBehaviour {
 
 	#region UnityMethods
 	public void Update() {
-		if (GameManager.State != GameState.INGAME)
+		if (GameManager.State != GameState.INGAME || (GlobalVariables.UIInventory?.InventoryOpened ?? false))
 			return;
 
 		///Gather Information
@@ -48,7 +48,7 @@ public class BlockInteraction : MonoBehaviour {
 			if(DebugVariables.blockInteractionInfo)
 				Debug.Log(thisChunk.ChunkData.blocks[blockInchunkCoord.x, blockInchunkCoord.y]);
 
-			if(BreakCoroutine == null) {
+			if(BreakCoroutine == null && targetBlockID != 0) {
 				byte targetRemoveDuration = GlobalVariables.WorldData.Blocks[targetBlockID].RemoveDuration;
 				BreakCoroutine = StartCoroutine(nameof(BreakBlock), new Tuple<byte, byte, TerrainChunk, Vector2Int>(targetRemoveDuration, targetBlockID, thisChunk, blockInchunkCoord));
 				if (DebugVariables.blockInteractionCR)
@@ -60,6 +60,10 @@ public class BlockInteraction : MonoBehaviour {
 			if (DebugVariables.blockInteractionInfo)
 				Debug.Log($"{blockHoverdAbsolute}, {blockInchunkCoord}, {thisChunk.ChunkData.ChunkPositionInt}");
 			///UNDONE
+			uint itemSelectedId = GlobalVariables.Inventory.InvSlots[GlobalVariables.Inventory.SelectedSlot].ItemID;
+			Item selectedItem = GlobalVariables.ItemAssets.GetItemFromItemID(itemSelectedId);
+			if(selectedItem is BlockItem)
+				thisChunk.PlaceBlock(new Vector3Int(blockInchunkCoord.x, blockInchunkCoord.y, 0), itemSelectedId);
 		}
 
 	}
@@ -86,18 +90,5 @@ public class BlockInteraction : MonoBehaviour {
 		if (DebugVariables.blockInteractionCR)
 			Debug.Log($"Block breaked: {blockID}");
 		thisChunk.DeleteBlock(new Vector3Int(blockInChunk.x, blockInChunk.y, 0));
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="inv"></param>
-	/// <param name="blockitem"></param>
-	/// <param name="anzahl"></param>
-	private void TakeDrops(Inventory inv, BlockItem blockitem, int anzahl) {
-		//Player collides with Drop
-		for (int x = 0; x < anzahl; x++)
-			inv.AddItem(blockitem);
-		GameObject.FindGameObjectWithTag("Inventory").GetComponent<UIInventory>().SynchronizeToHotbar();
 	}
 }

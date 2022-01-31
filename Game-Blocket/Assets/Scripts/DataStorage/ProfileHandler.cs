@@ -305,7 +305,7 @@ public static class ProfileHandler {
 		//Drops
 		string tempDrops = string.Empty;
 		foreach (Drop d in cd.drops)
-			tempDrops += $"{d.DropID},{d.Count},{d.Position};";
+			tempDrops += $"{d.ItemId},{d.Count},{d.Position};";
 		//Remove last ;
 		data.Remove(data.Length - 1);
 		data += tempDrops;

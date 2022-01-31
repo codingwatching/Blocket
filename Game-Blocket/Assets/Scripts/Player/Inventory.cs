@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour {
 
 	public byte SelectedSlot { get => _selectedSlot; set {
 			if (value >= HudSlots.Count || value < 0)
-				throw new ArgumentException($"{value}");
+				throw new ArgumentException($"Hud-Slot Nr.: {value} not found!");
 			HudSlots[_selectedSlot].IsSelected = false;
 			_selectedSlot = value;
 			HudSlots[_selectedSlot].IsSelected = true;
@@ -49,6 +49,7 @@ public class Inventory : MonoBehaviour {
 		slotPressed.ItemID = temp;
 
 		atHand.gameObject.SetActive(atHand.ItemID != 0);
+		GlobalVariables.UIInventory.SynchronizeToHotbar();
 	}
 
 	public void Update() {
@@ -62,9 +63,16 @@ public class Inventory : MonoBehaviour {
 	/// </summary>
 	/// <param name="itemToAdd">The Item Object</param>
 	/// <returns>True if the Item </returns>
-	public bool AddItem(Item itemToAdd) {
-		bool succeed = AddItem(itemToAdd, 1, out _);
-		return succeed;
+	[Obsolete]
+	public bool AddItem(Item itemToAdd) => AddItem(itemToAdd, 1, out _);
+	
+
+	public bool AddItem(Item itemToAdd, ushort itemCount, out ushort itemCountNotAdded)
+    {
+		bool x = AddItemInnerMethod(itemToAdd, itemCount, out ushort i);
+		itemCountNotAdded = i;
+		GlobalVariables.UIInventory.SynchronizeToHotbar();
+		return x;
 	}
 
 	/// <summary
@@ -74,7 +82,8 @@ public class Inventory : MonoBehaviour {
 	/// <param name="itemCount">Number of Item`s</param>
 	/// <param name="itemCountNotAdded"></param>
 	/// <returns><see langword="true"/> if the <see cref="Item"/> has been added</returns>
-	public bool AddItem(Item itemToAdd, ushort itemCount, out ushort itemCountNotAdded) {
+	/// 
+	private bool AddItemInnerMethod(Item itemToAdd, ushort itemCount, out ushort itemCountNotAdded) {
 		UIInventorySlot wannaAddThere = null;
 
 		///If item has ItemType: <see cref="Item.ItemType.SINGLE"/>
@@ -85,7 +94,7 @@ public class Inventory : MonoBehaviour {
 				itemCountNotAdded = 0;
 				return true;
 			}
-			itemCountNotAdded = 1;
+			itemCountNotAdded = itemCount;
 			return false;
 		}
 
@@ -103,27 +112,33 @@ public class Inventory : MonoBehaviour {
 				wannaAddThere = GetNextFreeSlot();
 
 			//Add the Item if a slot has been found
-			if (wannaAddThere) {
-				if (wannaAddThere.ItemID == 0) {
+			if (wannaAddThere)
+			{
+				if (wannaAddThere.ItemID == 0)
+				{
 					wannaAddThere.ItemID = itemToAdd.id;
 					wannaAddThere.ItemCount = toAddNow;
 					toAddNow = 0;
-				} else {
+				}else{
 					ushort iCBefore = wannaAddThere.ItemCount;
-					if (iCBefore + toAddNow > GlobalVariables.maxItemCountForMultiple) {
+					if (iCBefore + toAddNow > GlobalVariables.maxItemCountForMultiple)
+					{
 						ushort iCAddable = (ushort)(GlobalVariables.maxItemCountForMultiple - iCBefore);
 						toAddNow -= iCAddable;
 						wannaAddThere.ItemCount = GlobalVariables.maxItemCountForMultiple;
-					} else {
+					}
+					else
+					{
 						wannaAddThere.ItemCount += toAddNow;
 						toAddNow = 0;
 					}
 				}
 			}
+			else
+				break;
 		}
 		itemCountNotAdded = toAddNow;
-		return toAddNow == 0;
-
+		return toAddNow != itemCount;
 	}
 
 	/// <summary>
@@ -171,12 +186,12 @@ public class Inventory : MonoBehaviour {
 	/// <param name="countToRemove">Number of the Item to be removed</param>
 	/// <returns>True if the Inventory has enough of the specific item</returns>
 	public bool CanBeRemoved(Item itemToRemove, ushort countToRemove) {
-		return GetItemCountFromType(itemToRemove) > countToRemove;
+		return GetItemCountFromType(itemToRemove) >= countToRemove;
 	}
 
 	/// <summary>
 	/// Removes an Amount of Items<br></br>
-	/// Bevore it checks if it can be removed
+	/// Before it checks if it can be removed
 	/// </summary>
 	/// <param name="itemToRemove">The <see cref="Item"/> to remove</param>
 	/// <param name="countToRemove">Number of items</param>
@@ -193,6 +208,7 @@ public class Inventory : MonoBehaviour {
 			slotToRemove.ItemID = 0;
 		else
 			slotToRemove.ItemCount -= countToRemove;
+		GlobalVariables.UIInventory.SynchronizeToHotbar();
 		return true;
 	}
 	/// <summary>

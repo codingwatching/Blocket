@@ -1,13 +1,13 @@
 ﻿public static class DebugVariables {
-	public static readonly bool itemSlotButtonPressedLog = true;
-	public static readonly bool checkProfileCount = true;
-	public static readonly bool itemTest = true;
-	public static readonly bool generateChunksOnClient = true;
-	public static readonly bool showLoadAndSave = false;
-	public static readonly bool showRayCastTargets = true;
-	public static readonly bool showMultipleTasksOrExecution = false;
-	public static readonly bool showGameStateEvent = true;
-	public static readonly bool blockInteractionInfo = true;
-	public static readonly bool blockInteractionCR = true;
+	public static bool itemSlotButtonPressedLog => true;
+	public static bool checkProfileCount => true;
+	public static bool itemTest => true;
+	public static bool generateChunksOnClient => true;
+	public static bool showLoadAndSave => false;
+	public static bool showRayCastTargets => true;
+	public static bool showMultipleTasksOrExecution => false;
+	public static bool showGameStateEvent => false;
+	public static bool blockInteractionInfo => false;
+	public static bool blockInteractionCR => false;
 }
 

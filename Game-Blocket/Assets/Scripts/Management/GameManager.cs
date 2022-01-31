@@ -123,7 +123,7 @@ public class GameManager : NetworkBehaviour
 	public void InitPlayerComponents() {
 		GlobalVariables.GlobalAssets = GameObject.Find("Assets");
 		//Inventory
-		GlobalVariables.localUI = Instantiate(GlobalVariables.PrefabAssets.prefabUI);
+		GlobalVariables.LocalUI = Instantiate(GlobalVariables.PrefabAssets.prefabUI);
 
 		//Worldgeneration
 		if (NetworkManager.Singleton.IsHost)
